@@ -31,7 +31,7 @@ Cette application de gestion bancaire est construite avec **Spring Boot** pour l
 ## Installation
 1. Clonez le repository:
    ```bash
-   git clone https://github.com/username/nom-du-repo.git
+   git clone https://github.com/mohamedleminlehcene99/Application-gestion-de-bancaire.git
    ```
 2. Naviguez dans le dossier du projet :
    ```bash
