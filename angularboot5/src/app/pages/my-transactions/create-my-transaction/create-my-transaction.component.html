@@ -1,0 +1,95 @@
+
+<div class="card shadow mb-4">
+
+    <div class="card-header py-3 d-flex">
+        <h6 class="m-0 font-weight-bold text-primary">Create User</h6>
+        <div class="ml-auto">
+            <a href="javascript:void(0)" (click)="navigateToMyTransactions()" class="btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-home"></i>
+                    </span>
+                <span class="text">&nbsp;Transactions</span>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+
+
+        <div *ngIf="showAlert" class="alert  alert-success alert-dismissible fade show" role="alert" >
+            Transaction has been successfully added!
+            <button type="button" class="close" (click)="closeAlter()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <div *ngIf="errorMessage.length>0"  class="alert alert-warning alert-dismissible fade show" role="alert">
+            <ul>
+                <li *ngFor="let msg of errorMessage">{{msg}}</li>
+            </ul>
+            <button type="button" class="close" (click)="closeAlert2()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <form >
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label >Amount</label>
+                        <input type="text" [(ngModel)]="transactionDto.amount"  name="amount"  class="form-control">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+
+                        <label>Transaction Type</label>
+                        <select name="featured"  [(ngModel)]="transactionDto.transactionType" class="form-control">
+                            <option  [ngValue]="'TRANSFERT'" >TRANSFERT</option>
+                            <option  [ngValue]="'DEPOSIT'" >DEPOSIT</option>
+                        </select>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" *ngIf="transactionDto.transactionType === 'TRANSFERT'">
+                <div class="col-6">
+
+
+                    <div class="form-group">
+                        <label> Destination IBAN</label>
+                        <input type="text" disabled [(ngModel)]="transactionDto.destinationIbn"  name="destinationIbn"  class="form-control">
+                    </div>
+
+            </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+
+                        <label>Select contacts</label>
+                        <select name="featured" [(ngModel)]="transactionDto.destinationIbn"   class="form-control">
+                            <option *ngFor="let cts of contacts" [ngValue]="cts.ibn" >{{cts.firstname + ' ' + cts.lastname}}</option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group pt-4">
+                    <button (click)="createTransaction()" name="submit" class="btn btn btn-primary">Okay</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+

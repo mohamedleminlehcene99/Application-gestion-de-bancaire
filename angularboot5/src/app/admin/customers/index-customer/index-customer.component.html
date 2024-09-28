@@ -1,0 +1,97 @@
+
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3 d-flex">
+    <h6 class="m-0 font-weight-bold text-primary">Customers</h6>
+    <div class="ml-auto">
+      <a href="javascript:void(0)" (click)="navigateToCreateCustomers()"  class="btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+        <span class="text">Create new customer</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Created at</th>
+        <th class="text-center" style="width: 30px;">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let cust of customers">
+
+        <td>{{cust.firstname}}</td>
+        <td>{{cust.lastname}}</td>
+        <td>{{cust.email}}</td>
+        <td>
+          <span class="badge"
+          [ngClass]="{
+          'badge-primary': cust.roleId === 1,
+          'badge-warning': cust.roleId === 2
+          }"
+          >
+            {{cust.roleId === 1 ? 'ADMIN' : 'USER' }}
+          </span>
+        </td>
+        <td >
+
+          <span
+          [ngClass]="{
+          'text-primary': cust.active === true,
+          'text-warning': cust.active === false
+          }"
+          >
+            {{cust.active === true ? 'Active' : 'InActive'}}
+          </span>
+
+        </td>
+        <td>12-12-2025</td>
+
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- Edit Button -->
+            <a href="javascript:void(0)" (click)="navigateToShwoCustomer(cust.id)" class="btn btn-sm btn-warning me-2">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- Toggle Switch -->
+            <div class="form-check form-switch">
+              <input
+                      [checked]="cust.active"
+                      (change)="cust.active ? inActiveAccount(cust.id) : activeAccount(cust.id)"
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckChecked">
+            </div>
+          </div>
+        </td>
+
+
+      </tr>
+
+      <tr>
+        <td colspan="9" class="text-center">No customer found</td>
+      </tr>
+
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="9">
+          <div class="float-right">
+            pagination
+          </div>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex">
+        <h6 class="m-0 font-weight-bold text-primary">My Transactions</h6>
+        <div class="ml-auto">
+            <a href="javascript:void(0)" (click)="navigateToCreateTransactions()"  class="btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                <span class="text">Create New Transaction</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Destination IBAN</th>
+                <th>Transaction Type</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let trs of transactions">
+
+                <td>{{trs.amount}}</td>
+                <td>{{trs.destinationIbn}}</td>
+                <td>
+
+                    <span class="badge"
+                          [ngClass]="{
+          'badge-primary': trs.transactionType === 'TRANSFERT',
+          'badge-warning': trs.transactionType === 'DEPOSIT',
+          }"
+                    >
+            {{trs.transactionType}}
+                    </span>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td colspan="9" class="text-center">No customer found</td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="9">
+                    <div class="float-right">
+                        pagination
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

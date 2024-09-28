@@ -1,0 +1,76 @@
+
+<div class="card shadow mb-4">
+
+    <div class="card-header py-3 d-flex">
+        <h6 class="m-0 font-weight-bold text-primary">{{updateContact === true ? 'Update' : 'Create'}} Contact</h6>
+        <div class="ml-auto">
+            <a href="javascript:void(0)" (click)="navigateToContacts()" class="btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-home"></i>
+                    </span>
+                <span class="text">&nbsp;Contacts</span>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+
+        <div *ngIf="showAlert" class="alert  alert-success alert-dismissible fade show" role="alert" >
+            Contact has been successfully added!
+            <button type="button" class="close" (click)="closeAlter()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div *ngIf="errorMessage.length>0"  class="alert alert-warning alert-dismissible fade show" role="alert">
+            <ul>
+                <li *ngFor="let msg of errorMessage">{{msg}}</li>
+            </ul>
+            <button type="button" class="close" (click)="closeAlert2()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <form >
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label >First Name</label>
+                        <input type="text" [(ngModel)]="contactDto.firstname"  name="firstname"  class="form-control">
+                    </div>
+                </div>
+                <div class="col-6">
+
+                    <div class="form-group">
+                        <label> Last name</label>
+                        <input type="text" [(ngModel)]="contactDto.lastname"  name="lastname"  class="form-control">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label >Email</label>
+                        <input type="text"  name="email"  [(ngModel)]="contactDto.email" class="form-control">
+                    </div>
+                </div>
+                <div class="col-6">
+
+                    <div class="form-group">
+                        <label >IBAN</label>
+                        <input type="text"  name="ibn" [(ngModel)]="contactDto.ibn" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group pt-4">
+                <button (click)="createContact()" name="submit" class="btn btn btn-primary">Add Contact</button>
+            </div>
+        </form>
+    </div>
+</div>
+
